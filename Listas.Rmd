@@ -1,0 +1,94 @@
+---
+title: "Listas"
+author: "bo"
+date: "2024-10-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Listas
+Estructura de datos en el que se pueden guardar distintas clases de datos.
+
+1-Crea una lista que contenga al menos cuatro tipos diferentes de datos (incluyendo al menos un vector, una matriz, y un data frame). Luego, escribe código para acceder a cada uno de estos elementos por su índice
+```{r}
+
+b<-list(
+  mat<-matrix(c(21,22,23,24),nrow=2),
+  nombres<-c("blan","gus","nico"),
+  estatura<-c(165,182,159),
+  integrantes<-4
+)
+print(b)
+
+#Acceder a cada uno de los elementos#
+
+para_la_matriz<-b[[1]]
+para_la_matriz
+
+para_nombres<-b[[2]]
+para_nombres
+
+para_estatura<-b[[3]]
+para_estatura
+
+para_integrantes<-b[[4]]
+para_integrantes
+
+```
+
+## Listas anidadas
+
+Añade un nuevo elemento a la compleja_lista que sea otra lista conteniendo información relevante a un experimento microbiológico (p.ej., fechas, resultados de crecimiento, tipo de medio de cultivo). Accede a un elemento específico dentro de esta lista anidada.
+
+```{r}
+#Creación de lista compleja
+
+compleja_lista <- list(
+  numero = 42,#vectorial
+  vector = c(1, 2, 3),#vector
+  matriz = matrix(c(1, 2, 3, 4), nrow = 2),#matriz
+  data_frame = data.frame(nombre = c("E. coli", "S. aureus"), gram = c("+", "-"))#data frame
+)
+#Añadir una lista a lista compleja
+
+nuevos_datos<-list(
+  medios<-c("lb","MacKonkey","Chocolate","YPD"),
+  temp<-c(37,37,28,28.7,35),
+  estadio<-c("estacionario","exponencial","exponencial","latencia")
+)
+
+#Agregarlo a la lista compleja#
+
+#Se puede añadir con append#
+append(compleja_lista,nuevos_datos)
+
+#Acceder a un dato de la lista anidada#
+
+medios2<-compleja_lista[[5]][1][[1]][1]
+medios2#accede a lb#
+```
+Mantén un registro de ensayos clínicos en una lista.
+Crea una lista ensayos_clinicos con 3 elementos, cada uno representando un ensayo clínico.
+Cada elemento debe ser una lista con: Nombre, Fase, NúmeroPacientes.
+Calcula el total de pacientes involucrados en todos los ensayos clínicos.
+```{r}
+
+ensayos_clinicos<-list(
+  list(id="ensayo1",fase="1",pacientes=25),
+  list(id="ensayo2",fase="2",pacientes=45),
+  list(id="ensayo3",fase="3",pacientes=14)
+)
+print(ensayos_clinicos)
+
+el1<-ensayos_clinicos[[1]]$pacientes[1]
+el2<-ensayos_clinicos[[2]]$pacientes[1]
+el3<-ensayos_clinicos[[3]]$pacientes[1]
+
+total_pacientes<-sum(el1,el2,el3)
+total_pacientes
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
